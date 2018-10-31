@@ -9,7 +9,7 @@ import Search from '../containers/search';
 class App extends React.Component {
  
   componentDidMount(){
-    const url = "https://raw.githubusercontent.com/nadktk/11/master/clients.json";
+    const url = "https://raw.githubusercontent.com/nadktk/test/master/clients.json";
     fetch(url)
       .then( res => res.json() )
         .then( json =>{
