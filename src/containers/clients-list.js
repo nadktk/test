@@ -4,11 +4,32 @@ import {connect} from 'react-redux';
 import {select} from '../actions/index';
 
 const ClientsList = props => {
+    
+    let clients;
+    if (props.searchline === "") clients = props.clients;
+    else {
+        let reg = new RegExp(props.searchline, 'i');
+        let searchResult = props.clients.filter(client => {
+            for (let key in client) {
+                for (let field in client[key]) {
+                    let value = client[key][field];
+                    if (reg.test(value)) return true;
+                }
+            }
+            return false
+        });
+        clients = searchResult;
+        if (clients.length === 0) return (
+            <div>
+                No matches found<br />
+                Please try another search
+            </div>
+        )
+    }
+    
     return(
         <div className="ui relaxed divided list">
-            <p>To check searchline</p>
-            <p>{props.searchline}</p>
-            {props.clients.map( (v,i) => 
+            {clients.map( (v,i) => 
                 <div className="item" key={i} onClick={()=>{props.select(v)}}>
                     <img 
                         className="ui avatar image"
