@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 class ClientCard extends React.Component {
     render () {
     let client = this.props.selected ? this.props.selected : this.props.clients[0];
+    if (client === undefined) return <div></div>;
     return (
         <div className="">            
             <div className="ui grid">

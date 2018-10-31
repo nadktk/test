@@ -1,7 +1,7 @@
 import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {select} from '../actions/index';
+import {select} from '../actions/select';
 
 const ClientsList = props => {
     
@@ -26,7 +26,7 @@ const ClientsList = props => {
             </div>
         )
     }
-    
+
     return(
         <div className="ui relaxed divided list">
             {clients.map( (v,i) => 

@@ -1,15 +1,8 @@
-import $ from 'jquery';
-
-export default function(){
-    const url = 'https://raw.githubusercontent.com/nadktk/11/master/clients.json';
-    let clients;
-    $.ajax({
-        type: "GET", 
-        url: url,
-        async: false,
-        success: data => {
-            clients = JSON.parse(data); 
-        }
-    });   
-    return clients;
+export default function (state = [], action) {
+    switch (action.type) {
+        case "GET_CLIENTS":
+            return action.payload;
+        default: 
+            return state;
+    }
 }
