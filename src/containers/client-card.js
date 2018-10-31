@@ -1,27 +1,17 @@
 import React from 'react';
-//temporary
-import $ from 'jquery';
+import {connect} from 'react-redux';
 
-const url = 'https://raw.githubusercontent.com/nadktk/11/master/clients.json';
-let clients;
-$.ajax({
-    type: "GET", 
-    url: url,
-    async: false,
-    success: data => {
-        clients = JSON.parse(data); 
-    }
-});   
-//console.log(clients);
-
-const ClientCard = () => {
-    let client = clients[3]; /// -- replace this later
+class ClientCard extends React.Component {
+    render () {
+    let client = this.props.selected ? this.props.selected : this.props.clients[0];
     return (
-        <div className="">
-            
+        <div className="">            
             <div className="ui grid">
                 <div className="ui image rounded ">
-                    <img src={client.general.avatar} />
+                    <img 
+                        src={client.general.avatar}
+                        alt={client.general.firstName + " "+ client.general.lastName}
+                    />
                 </div>
                 <div className="ui card">      
                     <div className="content">
@@ -30,21 +20,21 @@ const ClientCard = () => {
                         </div>
                     </div>
                     <div className="content">
-                        <h4 class="ui sub header">Job Information</h4>    
+                        <h4 className="ui sub header">Job Information</h4>    
                         <div className="ui feed">
                             <p>{client.job.title}</p>
                             <p>{client.job.company}</p>
                         </div>
                     </div>
                     <div className="content">
-                        <h4 class="ui sub header">contacts</h4>    
+                        <h4 className="ui sub header">contacts</h4>    
                         <div className="ui feed">
                             <p>{client.contact.email}</p>
                             <p>{client.contact.phone}</p>
                         </div>
                     </div>
                     <div className="content">
-                        <h4 class="ui sub header">address</h4>    
+                        <h4 className="ui sub header">address</h4>    
                         <div className="ui feed">
                             <p>{client.address.country}</p>
                             <p>{client.address.city}</p>
@@ -56,6 +46,14 @@ const ClientCard = () => {
             </div>
         </div>
     )
+    }
   }
 
-export default ClientCard
+const mapStateToProps = state => {
+    return {
+        selected: state.selected,
+        clients: state.clients
+    }
+}
+
+export default connect(mapStateToProps)(ClientCard)
