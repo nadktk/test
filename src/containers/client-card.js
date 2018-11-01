@@ -7,14 +7,16 @@ class ClientCard extends React.Component {
     if (client === undefined) return <div></div>;
     return (
         <div className="">            
-            <div className="ui grid">
-                <div className="ui image rounded ">
+            <div className="ui grid stackable">
+                <div className="img-container">
                     <img 
                         src={client.general.avatar}
                         alt={client.general.firstName + " "+ client.general.lastName}
+                        className="ui image rounded card-image"
                     />
                 </div>
-                <div className="ui card">      
+                <div className="card-container">
+                <div className="ui card client-card">      
                     <div className="content">
                         <div className="header">
                             {client.general.firstName + " "+ client.general.lastName}
@@ -43,6 +45,7 @@ class ClientCard extends React.Component {
                             <p>{client.address.zipcode}</p>
                         </div>
                     </div>
+                </div>
                 </div>    
             </div>
         </div>

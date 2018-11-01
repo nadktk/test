@@ -1,0 +1,31 @@
+.ui.grid {
+    margin: 0;
+}
+.clients {
+    width: 300px !important;
+    padding-left: 0px !important;
+    min-width: 300px !important;
+}
+.card-info {
+    width: calc(100% - 300px) !important;
+    padding-right: 0px !important;
+}
+.item:hover {
+    cursor: pointer;
+}
+.img-container {
+    width: 128px;
+    padding-right: 0px !important;
+}
+.card-image {
+    margin: 0px !important;
+    margin-bottom: 14px !important;
+}
+.card-container {
+    min-width: 300px !important;
+    width: calc(100% - 142px) !important;
+    padding-right: 0px !important;
+}
+.client-card {
+    width: 100% !important;
+}

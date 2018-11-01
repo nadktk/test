@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import getClients from '../actions/getClients';
 import ClientsList from '../containers/clients-list';
 import ClientCard from '../containers/client-card';
-import Search from '../containers/search';
+import Search from './Search';
 
 class App extends React.Component {
  
@@ -13,6 +13,7 @@ class App extends React.Component {
     fetch(url)
       .then( res => res.json() )
         .then( json =>{
+          json.sort( (a,b) => a.general.firstName < b.general.firstName ? -1 : 1 );
           this.props.getClients(json);
         });
   }  
@@ -20,20 +21,18 @@ class App extends React.Component {
   render() {
     return (
       <div className="ui container">
-        <div className="ui horizontal divider"></div>  
         <div className="ui two column divided grid stackable">
-          <div className="five wide column">
+          <div className="column clients">
             <Search />
             <ClientsList />
           </div>
-          <div className="eleven wide column">
+          <div className="column card-info">
             <ClientCard />
           </div>
         </div>
       </div>
     )
   }
-
 }
 
 const matchDispatchToProps = (dispatch) => {
